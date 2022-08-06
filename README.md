@@ -1,2 +1,2 @@
 # YourDadsPlace
-The home of Dads everywhere
+The Home of Dads Everywhere
