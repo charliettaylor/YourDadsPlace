@@ -15,12 +15,12 @@ camera.position.x = 10;
 camera.position.y = 10;
 camera.position.z = 10;
 
-const ambientLight = new THREE.AmbientLight(0x404040, 10); // soft white light
-scene.add(ambientLight);
-
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
+
+const ambientLight = new THREE.AmbientLight(0x404040, 10); // soft white light
+scene.add(ambientLight);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
@@ -51,6 +51,17 @@ loader.load(
     console.log(error);
   }
 );
+
+const cubeLoader = new THREE.CubeTextureLoader();
+const skybox = cubeLoader.load([
+  'Daylight Box_Right.bmp',
+  'Daylight Box_Left.bmp',
+  'Daylight Box_Top.bmp',
+  'Daylight Box_Bottom.bmp',
+  'Daylight Box_Front.bmp',
+  'Daylight Box_Back.bmp',
+]);
+scene.background = skybox;
 
 window.addEventListener(
   'resize',
